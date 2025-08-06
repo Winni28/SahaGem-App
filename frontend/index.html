@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SahaGem - Teacher Aid</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <header>
+    <h1>SahaGem</h1>
+    <select id="ui_language_select">
+      <option value="en" selected>English</option>
+      <option value="hi">हिंदी</option>
+    </select>
+  </header>
+
+  <div class="container">
+    <nav class="sidebar">
+      <button id="btn_lesson_plan" class="sidebar-btn selected">Lesson Plan</button>
+      <button id="btn_story" class="sidebar-btn">RPG Story</button>
+      <button id="btn_quiz" class="sidebar-btn">Quiz</button>
+      <button id="btn_combined" class="sidebar-btn">Combined</button>
+    </nav>
+
+    <main>
+      <form id="generateForm">
+
+        <div class="form-row">
+          <label for="topic" id="label_topic">Topic:</label>
+          <input type="text" id="topic" required />
+        </div>
+
+        <div class="form-row">
+          <label for="grade" id="label_grade">Grade:</label>
+          <input type="number" id="grade" min="1" max="12" required />
+        </div>
+
+        <div class="form-row">
+          <label for="language" id="label_language">Language:</label>
+          <select id="language">
+            <option value="English">English</option>
+            <option value="Hindi">Hindi</option>
+          </select>
+        </div>
+
+        <!-- Lesson Plan inputs -->
+        <div id="lesson_plan_inputs" class="conditional-section">
+          <h3>Lesson Plan Options</h3>
+          <div class="form-row">
+            <label for="teaching_style" id="label_teaching_style">Teaching Style (optional):</label>
+            <input type="text" id="teaching_style" placeholder="e.g. Interactive, Visual" />
+          </div>
+          <div class="form-row">
+            <label for="duration" id="label_duration">Duration (optional):</label>
+            <input type="text" id="duration" placeholder="e.g. 45 minutes" />
+          </div>
+          <div class="form-row">
+            <label for="materials" id="label_materials">Materials (optional):</label>
+            <input type="text" id="materials" placeholder="e.g. Chalkboard, Worksheets" />
+          </div>
+          <div class="form-row">
+            <label for="assessment" id="label_assessment">Assessment (optional):</label>
+            <input type="text" id="assessment" placeholder="e.g. Quiz, Group work" />
+          </div>
+        </div>
+
+        <!-- RPG Story inputs -->
+        <div id="story_inputs" class="conditional-section" style="display:none;">
+          <h3>RPG Story Options</h3>
+          <div class="form-row">
+            <label for="adventure_type" id="label_adventure_type">Adventure Type (optional):</label>
+            <input type="text" id="adventure_type" placeholder="e.g. Mystery, Exploration" />
+          </div>
+          <div class="form-row">
+            <label for="constraints_select" id="label_constraints">Constraints (choose or leave blank):</label>
+            <select id="constraints_select">
+              <option value="">-- Select a constraint (optional) --</option>
+              <option value='{"setting": "Village"}'>Setting: Village</option>
+              <option value='{"setting": "City"}'>Setting: City</option>
+              <option value='{"difficulty_level": "Easy"}'>Difficulty: Easy</option>
+              <option value='{"difficulty_level": "Medium"}'>Difficulty: Medium</option>
+              <option value='{"difficulty_level": "Hard"}'>Difficulty: Hard</option>
+              <option value="custom">Custom JSON...</option>
+            </select>
+          </div>
+          <div class="form-row" id="custom_constraints_row" style="display:none;">
+            <label for="constraints_custom" style="font-style: italic; font-size: 0.9em;">Enter custom JSON constraints:</label>
+            <textarea id="constraints_custom" rows="3" placeholder='e.g. {"setting": "Forest", "weather": "Rainy"}'></textarea>
+          </div>
+          <div class="form-row">
+            <label for="characters" id="label_characters">Characters (optional):</label>
+            <input type="text" id="characters" placeholder="e.g. Students, Teacher" />
+          </div>
+        </div>
+
+        <!-- Quiz inputs -->
+        <div id="quiz_inputs" class="conditional-section" style="display:none;">
+          <h3>Quiz Options</h3>
+          <div class="form-row">
+            <label for="num_questions" id="label_num_questions">Number of Quiz Questions:</label>
+            <input type="number" id="num_questions" min="1" max="10" value="3" />
+          </div>
+          <div class="form-row">
+            <label for="question_type" id="label_question_type">Question Type:</label>
+            <select id="question_type">
+              <option>multiple choice</option>
+              <option>true/false</option>
+              <option>fill in the blanks</option>
+            </select>
+          </div>
+        </div>
+
+      <div class="button-row">
+        <button type="submit" id="btn_generate">Generate</button>
+        <button type="button" id="btn_reset">Reset</button>
+        <button type="button" id="btn_download">Download</button>
+      </div>
+      </form>
+
+       <h2 id="output_title">Output:</h2>
+
+        <!-- Separate outputs -->
+        <pre id="output_lesson_plan" class="output" style="display: none;"></pre>
+        <pre id="output_story" class="output" style="display: none;"></pre>
+        <pre id="output_quiz" class="output" style="display: none;"></pre>
+        <pre id="output_combined" class="output" style="display: none;"></pre>
+    </main>
+  </div>
+
+  <script src="js/marked.min.js"></script>
+  <script src="scripts.js"></script>
+
+  <script>
+    // Toggle custom constraints textarea
+    document.addEventListener('DOMContentLoaded', () => {
+      const constraintsSelect = document.getElementById('constraints_select');
+      const customConstraintsRow = document.getElementById('custom_constraints_row');
+
+      constraintsSelect.addEventListener('change', () => {
+        if (constraintsSelect.value === 'custom') {
+          customConstraintsRow.style.display = 'block';
+        } else {
+          customConstraintsRow.style.display = 'none';
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

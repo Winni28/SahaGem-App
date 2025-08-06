@@ -1,0 +1,253 @@
+/* -------------------- */
+/* Pastel color palette */
+/* -------------------- */
+:root {
+  --pastel-blue: #a3cef1;
+  --pastel-green: #b5ead7;
+  --pastel-peach: #ffd8be;
+  --pastel-purple: #cdb4db;
+  --pastel-yellow: #fff5ba;
+  --pastel-pink: #ffb3c6;
+  --text-color: #333;
+  --bg-color: #fdf6f0;
+}
+
+/* -------------------- */
+/* Reset & Base Styles  */
+/* -------------------- */
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+/* -------------------- */
+/* Header               */
+/* -------------------- */
+header {
+  background-color: var(--pastel-purple);
+  padding: 0.5rem 1.5rem;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.2rem;
+  text-align: left;
+  user-select: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 44px;
+}
+
+#ui_language_select {
+  margin-right: 0.5rem;
+  font-size: 0.9rem;
+}
+
+/* -------------------- */
+/* Layout               */
+/* -------------------- */
+.container {
+  display: flex;
+  height: calc(100vh - 44px); /* header height */
+}
+
+.sidebar {
+  background-color: var(--pastel-green);
+  padding: 1rem 0.5rem;
+  width: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.5rem;
+  box-shadow: 2px 0 6px rgba(0,0,0,0.1);
+}
+
+.sidebar-btn {
+  background: transparent;
+  border: none;
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 6px;
+  color: var(--text-color);
+  transition: background-color 0.3s ease;
+}
+
+.sidebar-btn:hover {
+  background-color: var(--pastel-peach);
+}
+
+.sidebar-btn.selected {
+  background-color: var(--pastel-yellow);
+  font-weight: 600;
+}
+
+main {
+  flex-grow: 1;
+  padding: 1.5rem 1.5rem 2rem 1.5rem;
+  overflow-y: auto;
+}
+
+/* -------------------- */
+/* Form & Inputs        */
+/* -------------------- */
+form {
+  max-width: 600px;
+  font-size: 0.9rem;
+}
+
+.form-row {
+  margin-bottom: 0.6rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 1rem;
+  align-items: center;
+}
+
+.form-row label {
+  margin-bottom: 0;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding-right: 0.3rem;
+}
+
+.form-row input[type="text"],
+.form-row input[type="number"],
+.form-row select {
+  padding: 0.4rem;
+  font-size: 0.9rem;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+  height: 28px;
+}
+
+.form-row textarea {
+  grid-column: 1 / -1;
+  padding: 0.4rem;
+  font-size: 0.9rem;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  resize: vertical;
+  height: 60px;
+}
+
+/* -------------------- */
+/* Buttons Row Container */
+/* -------------------- */
+.button-row {
+  display: flex;
+  gap: 12px;
+  margin-top: 1rem;
+}
+
+.button-row button {
+  flex: 1; /* Equal width */
+  padding: 0.7rem 1.2rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+/* -------------------- */
+/* Individual Buttons   */
+/* -------------------- */
+#btn_generate {
+  background-color: var(--pastel-blue);
+  color: #222;
+}
+
+#btn_generate:hover {
+  background-color: #7aaed6;
+}
+
+#btn_reset {
+  background-color: var(--pastel-yellow);
+  color: #444;
+}
+
+#btn_reset:hover {
+  background-color: #e7db85;
+}
+
+#btn_download {
+  background-color: var(--pastel-green);
+  color: #222;
+}
+
+#btn_download:hover {
+  background-color: #a6d4be;
+}
+
+/* -------------------- */
+/* Headings & Titles    */
+/* -------------------- */
+h2 {
+  margin-top: 1.8rem;
+  font-weight: 700;
+  color: var(--pastel-purple);
+  font-size: 1.2rem;
+}
+
+/* -------------------- */
+/* Output Containers    */
+/* -------------------- */
+pre#output,
+pre#output_lesson_plan,
+pre#output_story,
+pre#output_quiz,
+pre#output_combined {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 1rem;
+  min-height: 180px;
+  white-space: pre-wrap;
+  font-family: Consolas, monospace;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  overflow-y: auto;
+  font-size: 0.9rem;
+  border: 1px solid #ccc;
+  max-height: 400px;
+  width: 800px;
+}
+
+.output {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 1rem;
+  min-height: 180px;
+  font-family: Consolas, monospace;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  overflow-y: auto;
+  font-size: 0.9rem;
+  border: 1px solid #ccc;
+  max-height: 400px;
+  white-space: normal; /* allow normal wrapping */
+  width: 800px;
+}
+
+/* ------------------------------ */
+/* Section Blocks for Inputs     */
+/* ------------------------------ */
+#lesson_plan_inputs,
+#story_inputs,
+#quiz_inputs {
+  background-color: var(--pastel-yellow);
+  border-radius: 8px;
+  padding: 1rem 1.2rem;
+  margin-bottom: 1.2rem;
+  box-shadow: 0 0 6px rgba(0,0,0,0.07);
+}
+
+#lesson_plan_inputs h3,
+#story_inputs h3,
+#quiz_inputs h3 {
+  margin-top: 0;
+  font-weight: 700;
+  color: var(--pastel-purple);
+  font-size: 1rem;
+}
